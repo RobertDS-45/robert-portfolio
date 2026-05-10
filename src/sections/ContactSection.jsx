@@ -30,22 +30,25 @@ function ContactSection() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
+  const [submitStatus, setSubmitStatus] = useState(null); // { type: 'success' | 'error', message: string }
 
   // Handle input changes
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData((current) => ({
+      ...current,
       [e.target.name]: e.target.value
-    });
+    }));
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Basic validation
+
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setSubmitStatus('error');
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please fill in all required fields.'
+      });
       return;
     }
 
@@ -61,14 +64,25 @@ function ContactSection() {
         body: JSON.stringify(formData)
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        setSubmitStatus('success');
+        setSubmitStatus({
+          type: 'success',
+          message: data.message || 'Message sent successfully!'
+        });
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        setSubmitStatus('error');
+        setSubmitStatus({
+          type: 'error',
+          message: data.message || 'Failed to send message. Please try again.'
+        });
       }
     } catch (error) {
-      setSubmitStatus('error');
+      setSubmitStatus({
+        type: 'error',
+        message: 'Network error. Please try again.'
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -254,11 +268,16 @@ function ContactSection() {
                 <Send className="h-4 w-4 transition duration-300 group-hover:translate-x-1" />
               </button>
 
-              {submitStatus === 'success' && (
-                <p className="mt-4 text-sm text-green-400">Message sent successfully!</p>
-              )}
-              {submitStatus === 'error' && (
-                <p className="mt-4 text-sm text-red-400">Failed to send message. Please try again.</p>
+              {submitStatus && (
+                <p
+                  className={`mt-4 text-sm ${
+                    submitStatus.type === 'success'
+                      ? 'text-green-400'
+                      : 'text-red-400'
+                  }`}
+                >
+                  {submitStatus.message}
+                </p>
               )}
             </form>
           </motion.div>
