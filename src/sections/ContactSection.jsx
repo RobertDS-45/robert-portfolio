@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
@@ -20,6 +21,58 @@ const socialIcons = {
 
 function ContactSection() {
   const { contact, socialLinks, name, title } = portfolioProfile;
+
+  // Form state management
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
+
+  // Handle input changes
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setSubmitStatus('error');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <SectionShell id="contact" className="relative py-24 sm:py-28">
@@ -141,12 +194,15 @@ function ContactSection() {
             className="glass-panel relative overflow-hidden p-6 sm:p-7"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.12),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(139,92,246,0.14),transparent_32%)]" />
-            <form className="relative space-y-5">
+            <form onSubmit={handleSubmit} className="relative space-y-5">
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="block">
                   <span className="mb-2 block text-sm text-brand-muted">Name</span>
                   <input
                     type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     placeholder={contact.form.namePlaceholder}
                     className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-sm text-white outline-none transition duration-300 placeholder:text-brand-muted/70 focus:border-brand-primary/40 focus:bg-white/[0.07] focus:ring-2 focus:ring-brand-primary/20"
                   />
@@ -156,6 +212,9 @@ function ContactSection() {
                   <span className="mb-2 block text-sm text-brand-muted">Email</span>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder={contact.form.emailPlaceholder}
                     className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-sm text-white outline-none transition duration-300 placeholder:text-brand-muted/70 focus:border-brand-primary/40 focus:bg-white/[0.07] focus:ring-2 focus:ring-brand-primary/20"
                   />
@@ -166,6 +225,9 @@ function ContactSection() {
                 <span className="mb-2 block text-sm text-brand-muted">Subject</span>
                 <input
                   type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder={contact.form.subjectPlaceholder}
                   className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-sm text-white outline-none transition duration-300 placeholder:text-brand-muted/70 focus:border-brand-primary/40 focus:bg-white/[0.07] focus:ring-2 focus:ring-brand-primary/20"
                 />
@@ -175,6 +237,9 @@ function ContactSection() {
                 <span className="mb-2 block text-sm text-brand-muted">Message</span>
                 <textarea
                   rows="6"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder={contact.form.messagePlaceholder}
                   className="w-full resize-none rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-sm text-white outline-none transition duration-300 placeholder:text-brand-muted/70 focus:border-brand-primary/40 focus:bg-white/[0.07] focus:ring-2 focus:ring-brand-primary/20"
                 />
@@ -182,11 +247,19 @@ function ContactSection() {
 
               <button
                 type="submit"
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-brand-primary/30 bg-[linear-gradient(135deg,rgba(59,130,246,0.9),rgba(124,58,237,0.92))] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_35px_rgba(96,165,250,0.24)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_45px_rgba(96,165,250,0.34)]"
+                disabled={isSubmitting}
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-brand-primary/30 bg-[linear-gradient(135deg,rgba(59,130,246,0.9),rgba(124,58,237,0.92))] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_35px_rgba(96,165,250,0.24)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_45px_rgba(96,165,250,0.34)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
               >
-                {contact.form.submitLabel}
+                {isSubmitting ? 'Sending...' : contact.form.submitLabel}
                 <Send className="h-4 w-4 transition duration-300 group-hover:translate-x-1" />
               </button>
+
+              {submitStatus === 'success' && (
+                <p className="mt-4 text-sm text-green-400">Message sent successfully!</p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="mt-4 text-sm text-red-400">Failed to send message. Please try again.</p>
+              )}
             </form>
           </motion.div>
         </div>
