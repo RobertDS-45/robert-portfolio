@@ -1,11 +1,11 @@
 export const portfolioProfile = {
   name: "Robert Mwakamela",
-  title: "Data Scientist & Full-Stack Developer",
+  title: "Data Scientist & Full-Stack Developer ",
   intro:
-    "Building AI-powered systems, intelligent dashboards, machine learning solutions, and scalable web applications.",
+    "Building AI-powered systems, intelligent dashboards, and scalable web applications.",
   hero: {
-    badge: "Designing intelligent digital products with data at the core",
-    highlight: "AI systems, analytics, and scalable product engineering.",
+    badge: "Designing intelligent digital products powered by data",
+    highlight: "AI systems, modern analytics, and scalable digital products.",
     cta: {
       projectsLabel: "Explore Work",
       githubLabel: "GitHub",
@@ -24,8 +24,8 @@ export const portfolioProfile = {
       eyebrow: "Professional Profile",
     },
     biography: [
-      "I am a developer and data science enthusiast focused on building AI-powered systems, intelligent dashboards, machine learning solutions, and scalable web applications that solve practical problems.",
-      "My work combines analytical thinking with modern product engineering, allowing me to move from data exploration and model development to responsive interfaces, backend APIs, and production-ready user experiences.",
+      "I build AI-powered systems, intelligent dashboards, and scalable web applications designed to solve practical problems.",
+      "My work combines data science, backend engineering, and modern frontend development — moving from data exploration and model development to production-ready digital experiences.",
     ],
     highlights: [
       "AI-powered product thinking",
@@ -56,129 +56,104 @@ export const portfolioProfile = {
     ],
   },
   skills: {
-    eyebrow: "Skills",
-    heading: "A modern engineering stack for AI products, data workflows, and scalable web platforms.",
-    description:
-      "I work across data, machine learning, backend systems, and frontend experiences, choosing tools that help teams move from prototype to production with clarity and speed.",
-    categories: [
-      {
-        title: "AI / Machine Learning",
-        summary: "Modeling, anomaly detection, and applied intelligent systems.",
-        skills: [
-          { name: "Python", level: 95 },
-          { name: "Machine Learning", level: 90 },
-          { name: "XGBoost", level: 88 },
-          { name: "Isolation Forest", level: 84 },
-        ],
-      },
-      {
-        title: "Frontend / Product UI",
-        summary: "Responsive interfaces, polished experiences, and dashboard-focused design.",
-        skills: [
-          { name: "JavaScript", level: 91 },
-          { name: "React", level: 90 },
-          { name: "Data Visualization", level: 87 },
-          { name: "Dashboard Systems", level: 89 },
-        ],
-      },
-      {
-        title: "Backend / Platforms",
-        summary: "APIs, database integration, and production-ready application logic.",
-        skills: [
-          { name: "FastAPI", level: 88 },
-          { name: "REST APIs", level: 90 },
-          { name: "Web Scraping", level: 82 },
-        ],
-      },
-      {
-        title: "Data / Storage",
-        summary: "Data extraction, transformation, querying, and operational persistence.",
-        skills: [
-          { name: "SQL", level: 89 },
-          { name: "MongoDB", level: 80 },
-          { name: "Educational Analytics", level: 86 },
-          { name: "Insight Reporting", level: 88 },
-        ],
-      },
-    ],
-  },
+  eyebrow: "Core Expertise",
+  categories: [
+    {
+      title: "AI & Machine Learning",
+      items: [
+        "AI-powered Systems",
+        "Machine Learning",
+        "Intelligent Dashboards",
+      ],
+    },
+    {
+      title: "Full Stack Engineering",
+      items: [
+        "React",
+        "FastAPI",
+        "Node.js",
+        "REST APIs",
+      ],
+    },
+    {
+      title: "Languages",
+      items: [
+        "Python",
+        "JavaScript",
+        "SQL",
+      ],
+    },
+    {
+      title: "Cloud & Deployment",
+      items: [
+        "Docker",
+        "Render",
+        "MongoDB Atlas",
+      ],
+    },
+    {
+      title: "Workflow Tools",
+      items: [
+        "Git",
+        "GitHub",
+        "Microsoft Office",
+      ],
+    },
+  ],
+},
+    
   projects: {
     eyebrow: "Projects",
     heading: "Selected work across AI systems, analytics, and full-stack product development.",
-    description:
-      "A snapshot of projects where I combined engineering, data, and user-focused design to solve real problems with measurable impact.",
-    labels: {
-      preview: "Project Preview",
-      completed: "Completed",
-      inProgress: "In Progress",
-      snapshot: "Project snapshot",
-      comingSoon: "Coming soon",
-      github: "GitHub",
-      liveDemo: "Live Demo",
-      progressCta: "In Progress",
-      soonCta: "Coming Soon",
-      achievements: "Key Achievements",
-    },
+    description:"A snapshot of projects where I combined engineering, data, and user-focused design to solve real problems with measurable impact.",
     items: [
       {
-        title: "AI Fraud Detection System",
-        status: "In Progress",
-        description:
-          "A hybrid fraud detection system using XGBoost and Isolation Forest with a real-time monitoring dashboard and explainable AI integration.",
-        technologies: ["Python", "FastAPI", "XGBoost", "Isolation Forest", "React"],
-        achievements: [
-          "Combined supervised and anomaly detection models for broader fraud coverage",
-          "Built a real-time monitoring dashboard for operational visibility",
-          "Added explainable AI insights to support model trust and review workflows",
-        ],
-        githubHref: "https://github.com/RobertDS-45",
-        liveHref: "",
-        accent: "from-sky-500/25 via-cyan-400/10 to-indigo-500/20",
+        title: "SWM Platform",
+        status: "completed",
+        shortDescription:
+          "Smart waste management platform for vendors and customers.",
+        image: "/projects/swm-preview.png",
+        technologies: ["React", "MongoDB"],
+        liveUrl: "https://swm-delta.vercel.app/"
       },
       {
-        title: "NECTA Educational Data Analysis",
-        status: "Completed",
-        description:
-          "A large-scale educational results analysis project involving data scraping, statistical analysis, and visualization of regional performance trends.",
-        technologies: ["Python", "SQL", "Data Visualization", "Web Scraping", "Analytics"],
-        achievements: [
-          "Processed large educational datasets into actionable performance summaries",
-          "Generated regional and school-level comparisons for decision support",
-          "Designed visual outputs that made trends easier to interpret",
+        title: "AI Fraud Detection System",
+        status: "ongoing",
+        shortDescription:
+          "Real-time fraud monitoring powered by explainable AI.",
+        image: "/projects/fraud-system.png",
+        technologies: ["Python", "FastAPI", "XGBoost"],
+        progress: [
+          "✔ Fraud detection model completed",
+          "✔ Dashboard architecture designed",
+          "⏳ Explainable AI integration",
+          "⏳ Deployment pipeline"
         ],
-        githubHref: "https://github.com/RobertDS-45",
-        liveHref: "",
-        accent: "from-violet-500/25 via-fuchsia-400/10 to-sky-500/20",
+        expectedRelease: "August 2026",
+      },
+      {
+        title: "NECTA Educational Analysis",
+        status: "completed",
+        shortDescription:
+          "Educational analytics platform for regional performance insights.",
+        image: "/projects/necta-analysis.png",
+        technologies: ["Python", "SQL", "Analytics"],
+        liveUrl: "https://your-necta-site.vercel.app",
       },
       {
         title: "Leisure Booking Platform",
-        status: "In Progress",
-        description:
-          "A full-stack leisure booking and promotions platform built using Yii2, MySQL, and responsive UI components.",
-        technologies: ["PHP", "Yii2", "MySQL", "JavaScript", "Admin Dashboard"],
-        achievements: [
-          "Delivered booking flows with admin-side content and promotions management",
-          "Implemented image upload handling and operational dashboard tooling",
-          "Built a scalable structure for content updates and business workflows",
+        status: "ongoing",
+        shortDescription:
+          "Modern booking and promotions management platform.",
+        image: "/projects/leisure-platform.png",
+        technologies: ["Yii2", "MySQL", "JavaScript"],
+        progress: [
+          "✔ Booking flow completed",
+          "✔ Admin dashboard implemented",
+          "⏳ UI redesign",
+          "⏳ Payment integration"
         ],
-        githubHref: "https://github.com/RobertDS-45",
-        liveHref: "",
-        accent: "from-emerald-500/20 via-teal-400/10 to-sky-500/20",
-      },
-      {
-        title: "Catch the Chicken Game",
-        status: "Completed",
-        description:
-          "A browser and mobile-compatible game developed using Pygame and Pygbag.",
-        technologies: ["Python", "Pygame", "Pygbag", "Game Logic", "Responsive Canvas"],
-        achievements: [
-          "Adapted gameplay for both browser and mobile-friendly interaction",
-          "Optimized responsiveness and playability across devices",
-          "Created a lightweight and entertaining experience with portable deployment",
-        ],
-        githubHref: "https://github.com/RobertDS-45",
-        liveHref: "",
-        accent: "from-amber-400/20 via-orange-400/10 to-rose-500/20",
+        expectedRelease: "September 2026",
       },
     ],
   },
@@ -213,12 +188,12 @@ export const portfolioProfile = {
     },
   },
   focusAreas: [
-    "AI/ML Engineering",
-    "Dashboard Analytics",
-    "Full-Stack Platforms",
-  ],
+  "AI Systems",
+  "Analytics Dashboards",
+  "Full-Stack Applications",
+],
   stats: [
-    { label: "Specialties", value: "AI, Data, Web" },
+   { label: "Workflow", value: "Design to Deployment" },
     { label: "Stack", value: "React, FastAPI, Python" },
     { label: "Workflow", value: "Build, Analyze, Scale" },
   ],
@@ -231,6 +206,10 @@ export const portfolioProfile = {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/robert-mwakamela-ds",
     },
+    {
+      label:"whatsapp",
+      href: "https://wa.me/255755644875",
+    }
   ],
   cta: {
     projectsHref: "#projects",

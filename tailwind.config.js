@@ -5,41 +5,58 @@ export default {
     extend: {
       colors: {
         brand: {
-          bg: "#0B1120",
-          surface: "rgba(15, 23, 42, 0.7)",
-          line: "rgba(148, 163, 184, 0.18)",
-          text: "#E2E8F0",
-          muted: "#94A3B8",
-          primary: "#60A5FA",
-          secondary: "#8B5CF6",
-          glow: "#38BDF8",
+          primary: "#3B82F6",
+          secondary: "#232347",
+          bg: "#EEF3F8",
+          surface: "#FFFFFF",
+          text: "#1E293B",
+          muted: "#64748B",
+          border: "#DCE7F3",
+          light: "#F5F7FA",
         },
       },
       boxShadow: {
-        glass: "0 20px 50px rgba(15, 23, 42, 0.35)",
+        soft: "0 10px 30px rgba(0, 0, 0, 0.05)",
+        card: "0 4px 20px rgba(0, 0, 0, 0.08)",
+        hover: "0 20px 40px rgba(0, 0, 0, 0.1)",
       },
       backgroundImage: {
-        "hero-grid":
-          "linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px)",
-        "brand-radial":
-          "radial-gradient(circle at top, rgba(96, 165, 250, 0.16), transparent 35%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.14), transparent 28%)",
-      },
-      backgroundSize: {
-        grid: "42px 42px",
+        "gradient-soft":
+          "linear-gradient(180deg, #F5F7FA 0%, #EAF1F8 100%)",
+        "blob-primary":
+          "radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.12), transparent 50%)",
+        "blob-secondary":
+          "radial-gradient(circle at 80% 20%, rgba(35, 35, 71, 0.08), transparent 50%)",
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       maxWidth: {
         content: "1280px",
       },
       animation: {
-        float: "float 8s ease-in-out infinite",
+        "fade-up": "fade-up 0.6s ease-out",
+        "fade-in": "fade-in 0.6s ease-out",
+        float: "float 6s ease-in-out infinite",
       },
       keyframes: {
+        "fade-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(24px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
     },
