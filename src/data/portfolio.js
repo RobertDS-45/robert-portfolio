@@ -111,10 +111,19 @@ export const portfolioProfile = {
         title: "SWM Platform",
         status: "completed",
         shortDescription:
-          "Smart waste management platform for vendors and customers.",
+          "Smart wedding matchmaker platform for vendors and customers.",
         image: "/projects/swm-preview.png",
         technologies: ["React", "MongoDB"],
         liveUrl: "https://swm-delta.vercel.app/"
+      },
+      {
+        title: "Monster Shark Catch Fishing Game",
+        status: "completed",
+        shortDescription:
+          "Engaging fishing game with AI-powered challenges.",
+        image: "/projects/monster-shark-game.png",
+        technologies: ["python", "javaScript"],
+        liveUrl: "https://robertds-45.github.io/Monster-Shark/"
       },
       {
         title: "AI Fraud Detection System",
