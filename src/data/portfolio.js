@@ -1,11 +1,10 @@
 export const portfolioProfile = {
   name: "Robert Mwakamela",
-  title: "Data Scientist & Full-Stack Developer ",
+  title: "Data Scientist &  Developer ",
   intro:
     "Building AI-powered systems, intelligent dashboards, and scalable web applications.",
   hero: {
     badge: "Designing intelligent digital products powered by data",
-    highlight: "AI systems, modern analytics, and scalable digital products.",
     cta: {
       projectsLabel: "Explore Work",
       githubLabel: "GitHub",
