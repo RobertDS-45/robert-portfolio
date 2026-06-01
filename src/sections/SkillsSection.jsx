@@ -25,12 +25,12 @@ function SkillsSection() {
       >
         <p className="eyebrow mb-4">{skills.eyebrow}</p>
         {skills.heading && (
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-secondary leading-[1.05] tracking-[-0.03em] mb-5">
+          <h2 className="section-heading mb-5">
             {skills.heading}
           </h2>
         )}
         {skills.description && (
-          <p className="text-base sm:text-lg text-brand-muted leading-relaxed">
+          <p className="section-lead">
             {skills.description}
           </p>
         )}
@@ -51,8 +51,8 @@ function SkillsSection() {
               const Icon = categoryIcons[category.title] || Database;
 
               return (
-                <div key={category.title} className="p-6 sm:p-8">
-                  <div className="flex items-start gap-4">
+                <div key={category.title} className="p-4 xs:p-6 sm:p-8">
+                  <div className="flex min-w-0 items-start gap-3 xs:gap-4">
                     <div className="mt-1 rounded-2xl bg-brand-primary/10 p-3 text-brand-primary">
                       <Icon className="h-5 w-5" />
                     </div>

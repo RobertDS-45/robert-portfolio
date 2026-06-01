@@ -23,7 +23,7 @@ The portfolio is designed with a modern SaaS-inspired visual style using a dark 
 - Professional About section with biography, highlights, and animated stats
 - Categorized Skills section with tech icons and animated progress bars
 - Projects showcase with status badges, tech stack tags, and achievement highlights
-- Contact section with contact form UI, social media links, email, phone, and footer
+- Contact section with email, phone, social links, and footer
 - Responsive design optimized for mobile, tablet, and desktop
 - Smooth animations powered by Framer Motion
 - Reusable component structure for easy scaling and maintenance

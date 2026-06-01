@@ -1,105 +1,82 @@
 import { motion } from "framer-motion";
 import { BadgeCheck, DatabaseZap, ScanSearch, Sparkles } from "lucide-react";
-import profileImage from "../assets/roby-profile-image-optimized.jpg";
 import SectionShell from "../components/layout/SectionShell";
 import { portfolioProfile } from "../data/portfolio";
 
 const highlightIcons = [Sparkles, ScanSearch, DatabaseZap];
 
 function AboutSection() {
-  const { about, name } = portfolioProfile;
+  const { about } = portfolioProfile;
 
   return (
     <SectionShell id="about" className="relative py-16 sm:py-20">
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-        {/* Image Column */}
+      <div className="mx-auto max-w-4xl space-y-8">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
-          className="relative"
+          transition={{ duration: 0.6 }}
+          className="space-y-4 text-center lg:text-left"
         >
-          <div className="card-premium overflow-hidden p-0">
-            <img
-              src={profileImage}
-              alt={`${name} profile portrait`}
-              className="w-full h-auto object-cover aspect-square"
-            />
+          <p className="eyebrow">{about.eyebrow}</p>
+          <h2 className="section-heading mx-auto max-w-2xl lg:mx-0">
+            {about.heading}
+          </h2>
+          <div className="space-y-4">
+            {about.biography.map((paragraph) => (
+              <p key={paragraph} className="section-lead">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </motion.div>
 
-        {/* Content Column */}
-        <div className="space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-4"
-          >
-            <p className="eyebrow">{about.eyebrow}</p>
-            <h2 className="max-w-2xl text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-secondary leading-[1.05] tracking-[-0.03em]">
-              {about.heading}
-            </h2>
-            <div className="space-y-4 text-brand-muted leading-relaxed">
-              {about.biography.map((paragraph) => (
-                <p key={paragraph} className="text-base sm:text-lg">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="grid gap-4 sm:grid-cols-3"
+        >
+          {about.highlights.map((item, index) => {
+            const Icon = highlightIcons[index];
 
-          {/* Highlights Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="grid gap-4 sm:grid-cols-3"
-          >
-            {about.highlights.map((item, index) => {
-              const Icon = highlightIcons[index];
-
-              return (
-                <div
-                  key={item}
-                  className="card-premium p-5 space-y-3"
-                >
-                  <Icon className="h-6 w-6 text-brand-primary" />
-                  <p className="text-sm font-medium text-brand-text">{item}</p>
-                </div>
-              );
-            })}
-          </motion.div>
-
-          {/* Stats Grid */}
-          <div className="grid gap-4 sm:grid-cols-2 pt-4">
-            {about.stats.map(({ label, value, detail }, index) => (
-              <motion.article
-                key={label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.15 + index * 0.08,
-                }}
-                className="card-premium p-5 space-y-2"
+            return (
+              <div
+                key={item}
+                className="card-premium p-5 space-y-3"
               >
-                <p className="text-xs font-semibold uppercase tracking-wider text-brand-primary">
-                  {label}
-                </p>
-                <p className="text-2xl sm:text-3xl font-bold text-brand-secondary">
-                  {value}
-                </p>
-                <p className="text-sm text-brand-muted">
-                  {detail}
-                </p>
-              </motion.article>
-            ))}
-          </div>
+                <Icon className="h-6 w-6 text-brand-primary" />
+                <p className="text-sm font-medium text-brand-text">{item}</p>
+              </div>
+            );
+          })}
+        </motion.div>
+
+        <div className="grid gap-4 sm:grid-cols-2 pt-4">
+          {about.stats.map(({ label, value, detail }, index) => (
+            <motion.article
+              key={label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.15 + index * 0.08,
+              }}
+              className="card-premium p-5 space-y-2"
+            >
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-primary">
+                {label}
+              </p>
+              <p className="text-2xl sm:text-3xl font-bold text-brand-secondary">
+                {value}
+              </p>
+              <p className="text-sm text-brand-muted">
+                {detail}
+              </p>
+            </motion.article>
+          ))}
         </div>
       </div>
     </SectionShell>

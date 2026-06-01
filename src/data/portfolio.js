@@ -174,6 +174,7 @@ export const portfolioProfile = {
       eyebrow: "Get In Touch",
       socialLabel: "Social Media",
       emailLabel: "Email",
+      emailLinkHint: "Click to open your email app",
       phoneLabel: "Phone",
       availabilityLabel: "Availability",
       locationLabel: "Location",
@@ -182,13 +183,6 @@ export const portfolioProfile = {
     phone: ["+255755644875", "+255652968815"],
     availability: "Available for freelance, contract, and collaboration opportunities.",
     location: "Dar es Salaam, Tanzania",
-    form: {
-      namePlaceholder: "Your name",
-      emailPlaceholder: "Your email",
-      subjectPlaceholder: "Project subject",
-      messagePlaceholder: "Tell me about your project, idea, or opportunity...",
-      submitLabel: "Send Message",
-    },
     footer: {
       note: "Built with React, Vite, Tailwind CSS, and a passion for elegant digital products.",
       copyright: "Robert Mwakamela. All rights reserved.",

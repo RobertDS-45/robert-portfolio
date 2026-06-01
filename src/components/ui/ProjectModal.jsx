@@ -23,9 +23,9 @@ function ProjectModal({ isOpen, project, onClose }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-end justify-center p-3 xs:items-center xs:p-4"
           >
-            <div className="card-premium max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="card-premium max-h-[min(90dvh,100%)] w-full max-w-md overflow-y-auto overscroll-contain">
               <div className="relative h-48 overflow-hidden rounded-t-3xl bg-brand-bg">
                 <img
                   src={project.image}

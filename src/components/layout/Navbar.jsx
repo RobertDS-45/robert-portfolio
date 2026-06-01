@@ -18,42 +18,43 @@ function Navbar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="fixed top-6 inset-x-4 z-50"
+        className="fixed inset-x-3 top-[max(0.75rem,env(safe-area-inset-top))] z-50 xs:inset-x-4 sm:top-6"
       >
-        <div className="rounded-3xl border border-brand-border/50 bg-white/80 backdrop-blur-md shadow-soft">
-          <div className="flex items-center justify-between px-4 py-3.5 sm:px-8">
-            {/* Logo */}
-            <a href="#hero" className="mr-8 font-bold text-brand-secondary text-lg">
+        <div className="rounded-2xl border border-brand-border/50 bg-white/80 shadow-soft backdrop-blur-md xs:rounded-3xl">
+          <div className="flex min-h-12 items-center justify-between gap-2 px-3 py-2.5 xs:min-h-14 xs:px-4 sm:px-8 sm:py-3.5">
+            <a
+              href="#hero"
+              className="shrink-0 text-base font-bold text-brand-secondary xs:text-lg"
+            >
               Robert
             </a>
 
-            {/* Desktop Menu */}
-            <div className="hidden sm:flex items-center gap-1">
+            <div className="hidden items-center gap-1 sm:flex">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-brand-text rounded-lg transition duration-300 hover:bg-brand-primary/10 hover:text-brand-primary"
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-brand-text transition duration-300 hover:bg-brand-primary/10 hover:text-brand-primary lg:px-4"
                 >
                   {item.label}
                 </a>
               ))}
             </div>
 
-            {/* CTA Button */}
             <div className="hidden sm:block">
               <a
                 href="#contact"
-                className="ml-4 px-5 py-2 rounded-lg bg-brand-primary text-white text-sm font-semibold transition duration-300 hover:-translate-y-0.5 hover:shadow-hover"
+                className="ml-2 rounded-lg bg-brand-primary px-4 py-2 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:shadow-hover lg:ml-4 lg:px-5"
               >
                 Get in Touch
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="sm:hidden ml-4 p-3 text-brand-text hover:bg-brand-light rounded-lg transition"
+              className="ml-auto inline-flex min-h-10 min-w-10 items-center justify-center rounded-lg p-2 text-brand-text transition hover:bg-brand-light sm:hidden"
+              aria-expanded={isOpen}
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -61,21 +62,20 @@ function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu (slide-down full width) */}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
-            className="sm:hidden mt-3"
+            className="mt-2 sm:hidden"
           >
-            <div className="rounded-2xl border border-brand-border/30 bg-white shadow-md mx-0 px-4 py-6">
-              <div className="flex flex-col gap-4">
+            <div className="rounded-2xl border border-brand-border/30 bg-white px-3 py-4 shadow-md xs:px-4 xs:py-6">
+              <div className="flex flex-col gap-1">
                 {navItems.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="block w-full text-left px-4 py-3 text-base font-medium text-brand-text rounded-lg transition duration-300 hover:bg-brand-primary/10 hover:text-brand-primary"
+                    className="block w-full rounded-lg px-3 py-3 text-left text-base font-medium text-brand-text transition duration-300 hover:bg-brand-primary/10 hover:text-brand-primary"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
@@ -84,7 +84,7 @@ function Navbar() {
 
                 <a
                   href="#contact"
-                  className="block w-full text-center px-4 py-3 rounded-lg bg-brand-primary text-white text-base font-semibold transition duration-300 hover:shadow-hover mt-2"
+                  className="mt-2 block w-full rounded-lg bg-brand-primary px-4 py-3 text-center text-base font-semibold text-white transition duration-300 hover:shadow-hover"
                   onClick={() => setIsOpen(false)}
                 >
                   Get in Touch
@@ -95,11 +95,11 @@ function Navbar() {
         )}
       </motion.nav>
 
-      {/* Mobile menu overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 sm:hidden"
+          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm sm:hidden"
           onClick={() => setIsOpen(false)}
+          aria-hidden
         />
       )}
     </>

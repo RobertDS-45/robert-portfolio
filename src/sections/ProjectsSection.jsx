@@ -41,16 +41,16 @@ function ProjectsSection() {
         className="mx-auto max-w-2xl text-center mb-10 sm:mb-12"
       >
         <p className="eyebrow mb-4">{projects.eyebrow}</p>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-secondary leading-[1.05] tracking-[-0.03em] mb-5">
+        <h2 className="section-heading mb-5">
           {projects.heading}
         </h2>
-        <p className="text-base sm:text-lg text-brand-muted leading-relaxed">
+        <p className="section-lead">
           {projects.description}
         </p>
       </motion.div>
 
       {/* Projects Grid */}
-      <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+      <div className="grid grid-cols-1 gap-5 xs:gap-6 lg:grid-cols-2 lg:gap-8">
         {projects.items.map((project, index) => {
           const isCompleted = project.status === "completed";
           const isOngoing = project.status === "ongoing";
@@ -75,7 +75,7 @@ function ProjectsSection() {
                 className="card-premium group overflow-hidden h-full flex flex-col"
               >
                 {/* Project Image */}
-                <div className="relative h-56 sm:h-64 bg-gradient-to-br from-brand-light to-brand-bg overflow-hidden">
+                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-brand-light to-brand-bg xs:h-56 sm:h-64">
                   <img
                     src={project.image}
                     alt={`${project.title} preview`}
