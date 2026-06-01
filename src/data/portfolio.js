@@ -55,8 +55,11 @@ export const portfolioProfile = {
     ],
   },
   skills: {
-  eyebrow: "Core Expertise",
-  categories: [
+    eyebrow: "Core Expertise",
+    heading: "Skills and tools I use to build reliable products.",
+    description:
+      "From machine learning and APIs to deployment and collaboration — a practical stack for end-to-end delivery.",
+    categories: [
     {
       title: "AI & Machine Learning",
       items: [
@@ -98,9 +101,9 @@ export const portfolioProfile = {
         "Microsoft Office",
       ],
     },
-  ],
-},
-    
+    ],
+  },
+
   projects: {
     eyebrow: "Projects",
     heading: "Selected work across AI systems, analytics, and full-stack product development.",

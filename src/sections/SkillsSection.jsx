@@ -13,6 +13,8 @@ const categoryIcons = {
 
 function SkillsSection() {
   const { skills } = portfolioProfile;
+  const categoryCount = skills.categories.length;
+  const hasOddCount = categoryCount % 2 !== 0;
 
   return (
     <SectionShell id="skills" className="relative py-16 sm:py-20">
@@ -21,19 +23,15 @@ function SkillsSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
-        className="mx-auto max-w-2xl text-center mb-10 sm:mb-12"
+        className="mx-auto mb-10 max-w-2xl text-center sm:mb-12"
       >
         <p className="eyebrow mb-4">{skills.eyebrow}</p>
-        {skills.heading && (
-          <h2 className="section-heading mb-5">
-            {skills.heading}
-          </h2>
-        )}
-        {skills.description && (
-          <p className="section-lead">
-            {skills.description}
-          </p>
-        )}
+        {skills.heading ? (
+          <h2 className="section-heading mb-5">{skills.heading}</h2>
+        ) : null}
+        {skills.description ? (
+          <p className="section-lead">{skills.description}</p>
+        ) : null}
       </motion.div>
 
       <motion.div
@@ -43,26 +41,49 @@ function SkillsSection() {
         transition={{ duration: 0.7 }}
         className="relative mx-auto max-w-6xl"
       >
-        <div className="pointer-events-none absolute -top-10 right-8 h-24 w-24 rounded-full bg-gradient-to-br from-brand-primary/15 to-brand-secondary/10 blur-3xl" />
+        <div
+          className="pointer-events-none absolute -top-10 right-4 hidden h-24 w-24 rounded-full bg-gradient-to-br from-brand-primary/15 to-brand-secondary/10 blur-3xl sm:right-8 md:block"
+          aria-hidden
+        />
 
         <div className="group relative overflow-hidden rounded-3xl border border-brand-border bg-white shadow-soft transition duration-500 hover:-translate-y-0.5">
-          <div className="grid gap-0 lg:grid-cols-2 divide-y divide-brand-border lg:divide-y-0 lg:divide-x divide-brand-border">
-            {skills.categories.map((category) => {
+          <div className="grid grid-cols-1 divide-y divide-brand-border md:grid-cols-2 md:divide-x md:divide-y-0">
+            {skills.categories.map((category, index) => {
               const Icon = categoryIcons[category.title] || Database;
+              const isLastOddItem =
+                hasOddCount && index === categoryCount - 1;
 
               return (
-                <div key={category.title} className="p-4 xs:p-6 sm:p-8">
-                  <div className="flex min-w-0 items-start gap-3 xs:gap-4">
-                    <div className="mt-1 rounded-2xl bg-brand-primary/10 p-3 text-brand-primary">
-                      <Icon className="h-5 w-5" />
+                <div
+                  key={category.title}
+                  className={`p-4 sm:p-6 md:p-8 ${
+                    isLastOddItem ? "md:col-span-2" : ""
+                  }`}
+                >
+                  <div
+                    className={`flex min-w-0 items-start gap-3 sm:gap-4 ${
+                      isLastOddItem
+                        ? "md:mx-auto md:max-w-xl"
+                        : ""
+                    }`}
+                  >
+                    <div className="mt-0.5 shrink-0 rounded-2xl bg-brand-primary/10 p-3 text-brand-primary">
+                      <Icon className="h-5 w-5" aria-hidden />
                     </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-[#232347]">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-lg font-semibold text-brand-secondary sm:text-xl">
                         {category.title}
                       </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-[#64748B]">
-                        {category.items.join(" / ")}
-                      </p>
+                      <ul className="mt-3 flex flex-wrap gap-2">
+                        {category.items.map((item) => (
+                          <li
+                            key={item}
+                            className="rounded-full border border-brand-border bg-brand-light px-2.5 py-1 text-xs font-medium text-brand-text sm:px-3 sm:text-sm"
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </div>
