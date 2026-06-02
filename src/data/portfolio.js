@@ -69,7 +69,7 @@ export const portfolioProfile = {
       ],
     },
     {
-      title: "Full Stack Engineering",
+      title: "Full Stack & API Development",
       items: [
         "React",
         "FastAPI",
@@ -91,6 +91,8 @@ export const portfolioProfile = {
         "Docker",
         "Render",
         "MongoDB Atlas",
+        "Vercel",
+        "postgreSQL",
       ],
     },
     {
@@ -98,7 +100,9 @@ export const portfolioProfile = {
       items: [
         "Git",
         "GitHub",
-        "Microsoft Office",
+        "postman",
+        "vsCode",
+        "jupyter",
       ],
     },
     ],
