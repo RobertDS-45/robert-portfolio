@@ -96,6 +96,8 @@ uvicorn app.main:app --host 0.0.0.0 --port $PORT
 
 ### Vercel frontend
 
+This repo now includes a `vercel.json` at the root, so Vercel will build the `frontend/` folder instead of the repository root.
+
 1. In Vercel, go to your frontend project settings.
 2. Add `VITE_API_URL` with value:
 
