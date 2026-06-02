@@ -76,7 +76,7 @@ portfolio_profile = {
         "phone": ["+255755644875", "+255652968815"],
         "availability": "Available for freelance, contract, and collaboration opportunities.",
         "location": "Dar es Salaam, Tanzania",
-        "footer": {"note": "Built with React, Vite, Tailwind CSS, and a passion for elegant digital products.", "copyright": "Robert Mwakamela. All rights reserved.", "backToTopLabel": "Back to top"},
+        "footer": {"note": "Built with React,fastAPI, Vite, Tailwind CSS, and a passion for elegant digital products.", "copyright": "Robert Mwakamela. All rights reserved.", "backToTopLabel": "Back to top"},
     },
     "focusAreas": ["AI Systems", "Analytics Dashboards", "Full-Stack Applications"],
     "stats": [{"label": "Workflow", "value": "Design to Deployment"}, {"label": "Stack", "value": "React, FastAPI, Python"}, {"label": "Workflow", "value": "Build, Analyze, Scale"}],
