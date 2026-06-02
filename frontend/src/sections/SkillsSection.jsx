@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Cloud, Database, GitBranch, Layers3, Sparkles } from "lucide-react";
 import SectionShell from "../components/layout/SectionShell";
-import { portfolioProfile } from "../data/portfolio";
 
 const categoryIcons = {
   "AI & Machine Learning": Sparkles,
@@ -11,7 +10,7 @@ const categoryIcons = {
   "Workflow Tools": GitBranch,
 };
 
-function SkillsSection() {
+function SkillsSection({ portfolioProfile }) {
   const { skills } = portfolioProfile;
   const categoryCount = skills.categories.length;
   const hasOddCount = categoryCount % 2 !== 0;
@@ -46,8 +45,8 @@ function SkillsSection() {
           aria-hidden
         />
 
-        <div className="group relative overflow-hidden rounded-3xl border border-brand-border bg-white shadow-soft transition duration-500 hover:-translate-y-0.5">
-          <div className="grid grid-cols-1 divide-y divide-brand-border md:grid-cols-2 md:divide-x md:divide-y-0">
+        <div className="group relative overflow-visible transition duration-500">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {skills.categories.map((category, index) => {
               const Icon = categoryIcons[category.title] || Database;
               const isLastOddItem =
@@ -56,7 +55,7 @@ function SkillsSection() {
               return (
                 <div
                   key={category.title}
-                  className={`p-4 sm:p-6 md:p-8 ${
+                  className={`bg-white border border-brand-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-soft ${
                     isLastOddItem ? "md:col-span-2" : ""
                   }`}
                 >

@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import profileImage from "../assets/roby-profile-image-optimized.jpg";
 import SectionShell from "../components/layout/SectionShell";
-import { portfolioProfile } from "../data/portfolio";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -24,7 +23,7 @@ const itemVariants = {
   },
 };
 
-function HeroSection() {
+function HeroSection({ portfolioProfile }) {
   const { name, title, intro, focusAreas, hero } = portfolioProfile;
 
   return (

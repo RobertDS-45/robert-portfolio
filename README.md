@@ -60,6 +60,84 @@ cd roby-portfolio
 3. Install dependencies:
 
 ```bash
+
+## Backend Migration (FastAPI)
+
+This repository was migrated from a minimal Node/Express backend to a production-ready Python FastAPI backend. The FastAPI app lives under `backend/app` and is designed to be deployed separately (for example, on Render) while the frontend remains hosted on Vercel.
+
+Key points:
+- The frontend fetches data from an API at `VITE_API_URL` (see `frontend/.env.*`).
+- The FastAPI endpoints preserve the original JSON shapes:
+  - `GET /api/portfolio` -> `{ data: portfolioProfile }`
+  - `GET /api/health` -> `{ status: "ok" }`
+- Original Node/Express sources are backed up at `backend/backup_node`.
+
+### Running locally (frontend + backend)
+
+1. Start FastAPI backend:
+
+```bash
+cd backend
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# mac/linux
+# source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 4000
+```
+
+2. Start frontend (Vite):
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend dev will use `frontend/.env.development` which sets `VITE_API_URL=http://localhost:4000`.
+
+### Deploy backend to Render
+
+1. Create a new Web Service on Render and connect this repository.
+2. Set the Build and Start commands (Render will detect Python):
+
+Start command:
+```
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+3. Add environment variables on Render (Settings → Environment):
+- `CORS_ORIGINS` — comma-separated origins (include your Vercel URL)
+- `VERCEL_URL` — your Vercel frontend URL (optional)
+
+### Update Vercel (frontend) to use the Render backend
+
+1. In the Vercel dashboard, open your frontend project → Settings → Environment Variables.
+2. Add `VITE_API_URL` with value `https://<your-render-service>.onrender.com` for Production.
+3. Trigger a redeploy (Deployments → Redeploy) so the build includes the new env var.
+
+### Removing / destroying the previous Vercel-only deployment
+
+You have two safe options:
+
+- Recommended (update and reuse): Update the Vercel project to set `VITE_API_URL` to the new backend and redeploy — this preserves history and is reversible.
+- To fully remove the old deployment:
+  1. Go to Vercel Dashboard → Projects → select the project.
+  2. Settings → Danger Zone → Delete Project.
+  3. Confirm deletion. (This permanently removes deployments and preview history.)
+
+If you only want to stop serving the frontend from Vercel without deleting the project, you can disable automatic deployments or remove the Git integration.
+
+### Files added/modified during migration
+- `backend/app/` — FastAPI application and routers
+- `backend/requirements.txt` — Python deps
+- `backend/render.yaml` — Render service manifest (example)
+- `frontend/src/config/api.js` — centralized API base URL
+- `frontend/.env.development`, `frontend/.env.production`, `frontend/.env.example`
+- `backend/backup_node/` — original Node/Express backup
+
+If you want me to update this README further (add screenshots, CI steps, or a deploy checklist), tell me which details to expand.
 npm install
 ```
 

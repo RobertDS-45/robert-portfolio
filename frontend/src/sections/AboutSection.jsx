@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 import { BadgeCheck, DatabaseZap, ScanSearch, Sparkles } from "lucide-react";
 import SectionShell from "../components/layout/SectionShell";
-import { portfolioProfile } from "../data/portfolio";
 
 const highlightIcons = [Sparkles, ScanSearch, DatabaseZap];
 
-function AboutSection() {
+function AboutSection({ portfolioProfile }) {
   const { about } = portfolioProfile;
 
   return (

@@ -3,7 +3,6 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { FaWhatsapp, FaLinkedin, FaGithub } from "react-icons/fa";
 import SectionShell from "../components/layout/SectionShell";
 import SocialLink from "../components/ui/SocialLink";
-import { portfolioProfile } from "../data/portfolio";
 
 const socialIcons = {
   github: FaGithub,
@@ -11,7 +10,7 @@ const socialIcons = {
   whatsapp: FaWhatsapp,
 };
 
-function ContactSection() {
+function ContactSection({ portfolioProfile }) {
   const { contact, socialLinks, name } = portfolioProfile;
 
   return (

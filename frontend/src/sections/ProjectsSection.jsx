@@ -3,9 +3,8 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import SectionShell from "../components/layout/SectionShell";
 import ProjectModal from "../components/ui/ProjectModal";
-import { portfolioProfile } from "../data/portfolio";
 
-function ProjectsSection() {
+function ProjectsSection({ portfolioProfile }) {
   const { projects } = portfolioProfile;
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,10 +66,10 @@ function ProjectsSection() {
                 delay: index * 0.1,
               }}
               onClick={() => handleProjectClick(project)}
-              className={isClickable || isInProgress ? "cursor-pointer" : ""}
+              className={isClickable ? "cursor-pointer" : ""}
             >
               <motion.article
-                whileHover={isClickable || isInProgress ? { y: -8 } : {}}
+                whileHover={isClickable ? { y: -8 } : {}}
                 transition={{ duration: 0.3 }}
                 className="card-premium group overflow-hidden h-full flex flex-col"
               >
