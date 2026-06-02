@@ -8,263 +8,155 @@
 </p>
 
 <p align="center">
-  A premium personal portfolio website for showcasing data science, AI/ML engineering, dashboard systems, and full-stack development work.
+  A premium personal portfolio website showcasing data science, AI/ML, dashboards, and full-stack development.
 </p>
 
 ## Overview
 
-This project is the personal portfolio of **Robert Mwakamela**, a **Data Scientist & Full-Stack Developer** focused on building AI-powered systems, intelligent dashboards, machine learning solutions, and scalable web applications.
+This repository contains a React/Vite frontend and a separate Python FastAPI backend. The backend serves the portfolio data API independently from the frontend.
 
-The portfolio is designed with a modern SaaS-inspired visual style using a dark theme, glassmorphism UI, smooth motion effects, and responsive layouts for mobile, tablet, and desktop devices.
+## Current architecture
 
-## Features
-
-- Premium Hero section with animated gradients, social links, and call-to-action buttons
-- Professional About section with biography, highlights, and animated stats
-- Categorized Skills section with tech icons and animated progress bars
-- Projects showcase with status badges, tech stack tags, and achievement highlights
-- Contact section with email, phone, social links, and footer
-- Responsive design optimized for mobile, tablet, and desktop
-- Smooth animations powered by Framer Motion
-- Reusable component structure for easy scaling and maintenance
+- `frontend/` — React/Vite application with environment-based API configuration.
+- `backend/` — FastAPI backend implementation.
+- Legacy Node/Express backend files have been removed so only the new FastAPI implementation remains.
 
 ## Tech Stack
 
 - React
 - Vite
 - Tailwind CSS
-- Framer Motion
-- Lucide React
+- FastAPI
+- Uvicorn
+- python-dotenv
 
-## Getting Started
+## Local setup
 
-### Prerequisites
+### Backend
 
-- Node.js 18+ recommended
-- npm
+1. Open a terminal and run:
 
-### Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/RobertDS-45/roby-portfolio.git
-```
-
-2. Move into the project folder:
-
-```bash
-cd roby-portfolio
-```
-
-3. Install dependencies:
-
-```bash
-
-## Backend Migration (FastAPI)
-
-This repository was migrated from a minimal Node/Express backend to a production-ready Python FastAPI backend. The FastAPI app lives under `backend/app` and is designed to be deployed separately (for example, on Render) while the frontend remains hosted on Vercel.
-
-Key points:
-- The frontend fetches data from an API at `VITE_API_URL` (see `frontend/.env.*`).
-- The FastAPI endpoints preserve the original JSON shapes:
-  - `GET /api/portfolio` -> `{ data: portfolioProfile }`
-  - `GET /api/health` -> `{ status: "ok" }`
-- Original Node/Express sources are backed up at `backend/backup_node`.
-
-### Running locally (frontend + backend)
-
-1. Start FastAPI backend:
-
-```bash
+```powershell
 cd backend
 python -m venv venv
-# Windows
 venv\Scripts\activate
-# mac/linux
-# source venv/bin/activate
 pip install -r requirements.txt
+```
+
+2. Start the FastAPI backend:
+
+```powershell
 uvicorn app.main:app --reload --port 4000
 ```
 
-2. Start frontend (Vite):
+### Frontend
 
-```bash
+1. Open another terminal and run:
+
+```powershell
 cd frontend
 npm install
 npm run dev
 ```
 
-Frontend dev will use `frontend/.env.development` which sets `VITE_API_URL=http://localhost:4000`.
-
-### Deploy backend to Render
-
-1. Create a new Web Service on Render and connect this repository.
-2. Set the Build and Start commands (Render will detect Python):
-
-Start command:
-```
-uvicorn app.main:app --host 0.0.0.0 --port $PORT
-```
-
-3. Add environment variables on Render (Settings → Environment):
-- `CORS_ORIGINS` — comma-separated origins (include your Vercel URL)
-- `VERCEL_URL` — your Vercel frontend URL (optional)
-
-### Update Vercel (frontend) to use the Render backend
-
-1. In the Vercel dashboard, open your frontend project → Settings → Environment Variables.
-2. Add `VITE_API_URL` with value `https://<your-render-service>.onrender.com` for Production.
-3. Trigger a redeploy (Deployments → Redeploy) so the build includes the new env var.
-
-### Removing / destroying the previous Vercel-only deployment
-
-You have two safe options:
-
-- Recommended (update and reuse): Update the Vercel project to set `VITE_API_URL` to the new backend and redeploy — this preserves history and is reversible.
-- To fully remove the old deployment:
-  1. Go to Vercel Dashboard → Projects → select the project.
-  2. Settings → Danger Zone → Delete Project.
-  3. Confirm deletion. (This permanently removes deployments and preview history.)
-
-If you only want to stop serving the frontend from Vercel without deleting the project, you can disable automatic deployments or remove the Git integration.
-
-### Files added/modified during migration
-- `backend/app/` — FastAPI application and routers
-- `backend/requirements.txt` — Python deps
-- `backend/render.yaml` — Render service manifest (example)
-- `frontend/src/config/api.js` — centralized API base URL
-- `frontend/.env.development`, `frontend/.env.production`, `frontend/.env.example`
-- `backend/backup_node/` — original Node/Express backup
-
-If you want me to update this README further (add screenshots, CI steps, or a deploy checklist), tell me which details to expand.
-npm install
-```
-
-4. Start the development server:
-
-```bash
-npm run dev
-```
-
-5. Open the local app in your browser:
+2. Open the app in your browser:
 
 ```text
 http://localhost:5173
 ```
 
-## Available Scripts
+The frontend uses `frontend/.env.development` to set `VITE_API_URL=http://localhost:4000` during development.
 
-```bash
-npm run dev
-```
-Starts the Vite development server.
+## Environment configuration
 
-```bash
-npm run build
-```
-Builds the app for production.
+- `frontend/.env.development` — local development backend URL.
+- `frontend/.env.production` — production backend URL.
+- `frontend/.env.example` — example frontend env file.
+- `backend/.env.example` — example backend env file.
 
-```bash
-npm run preview
-```
-Previews the production build locally.
+## API endpoints
 
-## Folder Structure
-
-```text
-roby-portfolio/
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── layout/
-│   │   └── ui/
-│   ├── data/
-│   ├── pages/
-│   ├── sections/
-│   ├── App.jsx
-│   ├── index.css
-│   └── main.jsx
-├── index.html
-├── package.json
-├── postcss.config.js
-├── tailwind.config.js
-├── vite.config.js
-└── README.md
-```
+- `GET /api/portfolio` — returns `{ data: portfolioProfile }`
+- `GET /api/health` — returns `{ status: "ok" }`
 
 ## Deployment
 
-This project can be deployed easily to modern frontend hosting platforms such as:
+### Render backend
 
-- Vercel
-- Netlify
-- GitHub Pages
-
-### Production Build
+1. Create a Render Web Service and connect this repository.
+2. Use the start command:
 
 ```bash
-npm run build
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
 ```
 
-The optimized output will be generated in the `dist/` folder.
+3. Add Render environment variables:
+- `CORS_ORIGINS` — comma-separated allowed origins (include your Vercel frontend URL).
+- `VERCEL_URL` — optional, your frontend Vercel URL.
 
-### Example Vercel / Netlify Flow
+### Vercel frontend
 
-1. Push the project to GitHub
-2. Import the repository into Vercel or Netlify
-3. Use the default build command:
-
-```bash
-npm run build
-```
-
-4. Use the default publish directory:
+1. In Vercel, go to your frontend project settings.
+2. Add `VITE_API_URL` with value:
 
 ```text
-dist
+https://your-backend-service.onrender.com
 ```
 
-## Screenshots
+3. Redeploy the project.
 
-Add project screenshots here after deployment or UI updates.
+## Removing old Vercel-only deployment
 
-### Hero Section
+If you no longer want the old frontend-only deployment:
+
+- Recommended: update the existing Vercel project environment variables and redeploy.
+- To delete the project entirely: Vercel Dashboard → Projects → select project → Settings → Danger Zone → Delete Project.
+
+## Folder structure
 
 ```text
-[ Screenshot Placeholder ]
+roby-portfolio/
+├── backend/
+│   ├── app/
+│   │   ├── core/
+│   │   ├── data/
+│   │   ├── routers/
+│   │   ├── main.py
+│   │   └── __init__.py
+│   ├── requirements.txt
+│   ├── render.yaml
+│   ├── README.md
+│   └── .env.example
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── layout/
+│   │   │   └── ui/
+│   │   ├── config/
+│   │   ├── pages/
+│   │   ├── sections/
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── .env.development
+│   ├── .env.production
+│   ├── .env.example
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   ├── vite.config.js
+│   └── README.md
+└── README.md
 ```
 
-### About / Skills
+## Notes
 
-```text
-[ Screenshot Placeholder ]
-```
-
-### Projects / Contact
-
-```text
-[ Screenshot Placeholder ]
-```
-
-## Project Highlights
-
-- AI/ML portfolio presentation with premium UI styling
-- Strong focus on dashboards, analytics, and scalable digital systems
-- Built with reusable React components and maintainable data-driven content
-- Designed to present technical skills and project credibility clearly to recruiters and collaborators
+- The current backend source is under `backend/app`.
+- Duplicate legacy backend code has been removed.
+- The frontend now uses environment-driven API calls via `frontend/src/config/api.js`.
 
 ## Contact
 
-**Robert Mwakamela  
-Data Scientist & Full-Stack Developer  
-Dar es Salaam, Tanzania
-
-- Email: [robertmwakamela2045@gmail.com](mailto:robertmwakamela2045@gmail.com)
-- Phone: `+255755644875` / `+255652968815`
-- GitHub: [RobertDS-45](https://github.com/RobertDS-45)
-- LinkedIn: [robert-mwakamela-ds](https://www.linkedin.com/in/robert-mwakamela-ds)
-
-## License
-
-This project is for personal portfolio use. You may adapt the structure for inspiration, but the content and branding belong to Robert Mwakamela.
+**Robert Mwakamela**  
+Email: robertmwakamela2045@gmail.com
